@@ -1,11 +1,10 @@
 import './App.css';
-import Item from './components/item.js'
+import React from 'react';
 
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
-      <Item/>
+      <h1>Our first test</h1>
     </>
   );
 }
