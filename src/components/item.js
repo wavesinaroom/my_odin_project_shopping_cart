@@ -1,13 +1,11 @@
+import { Link } from "react-router-dom";
 import React from "react";
 
 const Item = ({info},{addCart}) => {
-  const closePanel = () =>{
-
-  };
 
   return(
     <>
-      <button onClick={closePanel}>X</button> 
+      <button><Link to="/">X</Link></button>
       <img src={info.pic} alt={info.title}></img>
       <h1>{info.title}</h1>
       <p>{info.description}</p>
