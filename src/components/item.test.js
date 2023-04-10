@@ -1,15 +1,21 @@
-import React from "react";
-import { render,cleanup,screen,fireEvent} from "@testing-library/react";
+import React from 'react';
+import { render, cleanup,screen, getByAltText} from '@testing-library/react';
 import '@testing-library/jest-dom'
-import Item from "./item";
+import userEvent from '@testing-library/user-event';
+import Item from './item';
 
-it(`adds item to cart`,()=>{
+afterEach(cleanup);
+const details = {pic: `a pic`, title:`a title`, description:`a description`}
+const addCartMock =jest.fn(); 
+
+test(`Content renders`,()=>{
+  render(<Item info={details} addCart={addCartMock}/>);
+
+  const image = screen.getByAltText(`${details.title}`);
+  expect(image).toBeInTheDocument();
+  expect(image).toHaveAttribute(`src`,`${details.pic}`);
+  expect(screen.getByRole(`heading`, {name:details.title})).toBeInTheDocument();
+  expect(screen.getByText(`${details.description}`)).toBeInTheDocument();
+  expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
-it(`closes panel`,()=>{
-
-});
-
-it(`notifies actions`,()=>{
-
-});
