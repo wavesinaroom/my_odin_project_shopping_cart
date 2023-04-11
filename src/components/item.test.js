@@ -19,3 +19,9 @@ test(`Content renders`,()=>{
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
+test(`Add button click event`,()=>{
+  render(<Item info={details} addCart={addCartMock(details)}/>);
+
+  userEvent.click(screen.getByRole(`button`), {name: `Add`});
+  expect(addCartMock).toHaveBeenCalledWith(details);
+});
