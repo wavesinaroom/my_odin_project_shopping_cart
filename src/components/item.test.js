@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, cleanup,screen, getByAltText} from '@testing-library/react';
+import { render, cleanup,screen, getByAltText, waitFor} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Item from './item';
+import App from '../App';
 
 afterEach(cleanup);
 const details = {pic: `a pic`, title:`a title`, description:`a description`}
@@ -13,7 +14,7 @@ test(`Content renders`,()=>{
 
   render(
     <MemoryRouter>
-      <Item info={details} addCart={addCartMock}/>);
+      <Item info={details} addCart={()=>{addCartMock(details)}}/>;
     </MemoryRouter>);
 
   const image = screen.getByAltText(`${details.title}`);
@@ -32,4 +33,22 @@ test(`Add button click event`,async ()=>{
 
   await userEvent.click(screen.queryByText(`Add`));
   expect(addCartMock).toHaveBeenCalledWith(details);
+});
+
+test(`X button returns to main`, async()=>{
+  render(
+    <MemoryRouter initialEntries={['/item']}>
+      <Routes>
+        <Route path='/item' element={<Item info={details} addCart={()=>{addCartMock(details)}}/>}/>
+        <Route path='/' element={<App/>}/>
+      </Routes>
+    </MemoryRouter>
+  );
+
+  userEvent.click(screen.queryByText(`X`));
+
+  await waitFor(()=>{
+    expect(screen.getByRole('heading').textContent).toMatch(/VST shop/);
+  });
+  
 });

@@ -4,7 +4,7 @@ import React from 'react';
 function App() {
   return (
     <>
-      <h1>Our first test</h1>
+      <h1>VST shop</h1>
     </>
   );
 }
