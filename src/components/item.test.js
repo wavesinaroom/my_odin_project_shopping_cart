@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup,screen, getByAltText} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import Item from './item';
 
 afterEach(cleanup);
@@ -9,7 +10,11 @@ const details = {pic: `a pic`, title:`a title`, description:`a description`}
 const addCartMock =jest.fn(); 
 
 test(`Content renders`,()=>{
-  render(<Item info={details} addCart={addCartMock}/>);
+
+  render(
+    <MemoryRouter>
+      <Item info={details} addCart={addCartMock}/>);
+    </MemoryRouter>);
 
   const image = screen.getByAltText(`${details.title}`);
   expect(image).toBeInTheDocument();
@@ -19,9 +24,12 @@ test(`Content renders`,()=>{
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
-test(`Add button click event`,()=>{
-  render(<Item info={details} addCart={addCartMock(details)}/>);
+test(`Add button click event`,async ()=>{
+  render(
+    <MemoryRouter>
+      <Item info={details} addCart={()=>{addCartMock(details)}}/>);
+    </MemoryRouter>);
 
-  userEvent.click(screen.getByRole(`button`), {name: `Add`});
+  await userEvent.click(screen.queryByText(`Add`));
   expect(addCartMock).toHaveBeenCalledWith(details);
 });
