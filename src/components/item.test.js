@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup,screen, getByAltText, waitFor} from '@testing-library/react';
+import { render, cleanup,screen,  waitFor, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -25,14 +25,17 @@ test(`Content renders`,()=>{
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
-test(`Add button click event`,async ()=>{
+test(`Add button click event`,()=>{
   render(
     <MemoryRouter>
       <Item info={details} addCart={()=>{addCartMock(details)}}/>);
     </MemoryRouter>);
 
-  await userEvent.click(screen.queryByText(`Add`));
+  fireEvent.click(screen.queryByText(`Add`));
   expect(addCartMock).toHaveBeenCalledWith(details);
+  expect(screen.getByText(`Item added to cart`)).toBeInTheDocument(); 
+  expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
+
 });
 
 test(`X button returns to main`, async()=>{
@@ -45,7 +48,7 @@ test(`X button returns to main`, async()=>{
     </MemoryRouter>
   );
 
-  userEvent.click(screen.queryByText(`X`));
+  userEvent.click(screen.queryByText(`&times`));
 
   await waitFor(()=>{
     expect(screen.getByRole('heading').textContent).toMatch(/VST shop/);
