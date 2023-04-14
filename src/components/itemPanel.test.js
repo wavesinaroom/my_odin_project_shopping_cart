@@ -3,7 +3,7 @@ import { render, cleanup,screen,  waitFor, fireEvent} from '@testing-library/rea
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import Item from './item';
+import ItemPanel from './itemPanel';
 import App from '../App';
 
 afterEach(cleanup);
@@ -14,13 +14,13 @@ test(`Content renders`,()=>{
 
   render(
     <MemoryRouter>
-      <Item info={details} addCart={()=>{addCartMock(details)}}/>;
+      <ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>;
     </MemoryRouter>);
 
   const image = screen.getByAltText(`${details.title}`);
   expect(image).toBeInTheDocument();
   expect(image).toHaveAttribute(`src`,`${details.pic}`);
-  expect(screen.getByRole(`heading`, {name:details.title})).toBeInTheDocument();
+  expect(screen.getByRole(`heading`,`${details.title}`)).toBeInTheDocument();
   expect(screen.getByText(`${details.description}`)).toBeInTheDocument();
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
@@ -28,21 +28,20 @@ test(`Content renders`,()=>{
 test(`Add button click event`,()=>{
   render(
     <MemoryRouter>
-      <Item info={details} addCart={()=>{addCartMock(details)}}/>);
+      <ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>);
     </MemoryRouter>);
 
   fireEvent.click(screen.queryByText(`Add`));
   expect(addCartMock).toHaveBeenCalledWith(details);
   expect(screen.getByText(`Item added to cart`)).toBeInTheDocument(); 
   expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
-
 });
 
 test(`X button returns to main`, async()=>{
   render(
     <MemoryRouter initialEntries={['/item']}>
       <Routes>
-        <Route path='/item' element={<Item info={details} addCart={()=>{addCartMock(details)}}/>}/>
+        <Route path='/item' element={<ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>}/>
         <Route path='/' element={<App/>}/>
       </Routes>
     </MemoryRouter>
@@ -51,7 +50,7 @@ test(`X button returns to main`, async()=>{
   userEvent.click(screen.queryByText(`&times`));
 
   await waitFor(()=>{
-    expect(screen.getByRole('heading').textContent).toMatch(/VST shop/);
+    expect(screen.getByRole('heading', `VST shop`)).toBeInTheDocument();
   });
   
 });
