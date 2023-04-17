@@ -7,13 +7,18 @@ import uniqid from 'uniqid'
 
 const App = ()=> {
   const [items,setItems] = useState(Items);
+  const [cart,setCart] = useState([]);
+
+  const addItemToCart = (info)=>{
+    
+  } 
 
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
-          <Item key={uniqid()} details={item}/>
+          <Item key={uniqid()} details={item} addCart={addItemToCart}/>
         )}
       </div>
     </>

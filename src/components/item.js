@@ -1,9 +1,11 @@
-const Item = ({details})=>{
+import {Link} from "react-router-dom";
+
+const Item = ({details,addCart})=>{
 
   return(
     <div className='item' data-testid='item-test'>
       <h4>{details.name}</h4>
-      <img src={details.pic} alt={details.name}></img> 
+      <Link to={{pathname:`/item`, state:{details:details, func:addCart}}}><img src={details.pic} alt={details.name}></img></Link> 
       <p>{details.description}</p>
       <p>{details.price}</p>
     </div>
