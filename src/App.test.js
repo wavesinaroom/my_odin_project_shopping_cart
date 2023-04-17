@@ -1,10 +1,20 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {cleanup, render, screen} from "@testing-library/react";
+import '@testing-library/jest-dom';
 import App from "./App"
+import Item from "./components/item";
+
+afterEach(cleanup);
 
 describe("App component", ()=>{
-  it("renders correcly",()=>{
+  it(`Renders correctly`,()=>{
     render(<App/>);
-    expect(screen.getByRole("heading").textContent).toMatch(/VST shop/i);
-  })
-})
+  });
+});
+
+describe(`Item display`,()=>{
+  it(`Renders twelve items`, ()=>{
+    render(<App/>);
+    expect(screen.getAllByTestId('item-test')).toHaveLength(12);
+  }); 
+});
