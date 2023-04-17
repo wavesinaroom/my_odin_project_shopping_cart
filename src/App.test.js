@@ -2,13 +2,14 @@ import React from "react";
 import {cleanup, render, screen} from "@testing-library/react";
 import '@testing-library/jest-dom';
 import App from "./App"
-import Item from "./components/item";
 
 afterEach(cleanup);
 
 describe("App component", ()=>{
   it(`Renders correctly`,()=>{
     render(<App/>);
+    expect(screen.getByTestId('main-title')).toBeInTheDocument();
+    expect(screen.getByTestId(`items-display`)).toBeInTheDocument();
   });
 });
 

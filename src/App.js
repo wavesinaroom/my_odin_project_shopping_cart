@@ -10,8 +10,8 @@ const App = ()=> {
 
   return (
     <>
-      <h1>VST shop</h1>
-      <div className='display'>
+      <h1 data-testid='main-title'>VST shop</h1>
+      <div data-testid='items-display' className='display'>
         {items.map((item)=>
           <Item key={uniqid()} details={item}/>
         )}
