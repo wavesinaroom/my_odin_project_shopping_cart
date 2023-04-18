@@ -4,7 +4,6 @@ import  userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom';
 import {MemoryRouter, Route, Routes} from "react-router";
 import App from "../App";
-import {async} from "q";
 
 afterEach(cleanup);
 
@@ -16,7 +15,7 @@ describe(`Cart button toggle`,()=>{
           <Route path="/" element={<App/>}/>
         </Routes>
       </MemoryRouter>);
-  it(`toggles cart panel`,async()=>{
+  it(`toggles cart panel on`,async()=>{
     userEvent.click(screen.queryByAltText(`cart-icon`));
 
     await waitFor(()=>{
