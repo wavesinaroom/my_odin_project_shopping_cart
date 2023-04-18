@@ -8,3 +8,5 @@ const CartItem = ({item,removeCart})=>{
     </div>
   );
 }
+
+export default CartItem;
