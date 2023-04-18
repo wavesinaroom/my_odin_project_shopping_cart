@@ -10,7 +10,14 @@ const App = ()=> {
   const [cart,setCart] = useState([]);
 
   const addItemToCart = (info)=>{
+    let isInCart = false;
+    cart.forEach((item)=>{
+      if(item===info)
+        isInCart=true;
+    });
     
+    if(!isInCart)
+      setCart([...cart,info]);
   } 
 
   return (
