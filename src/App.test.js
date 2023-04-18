@@ -53,3 +53,7 @@ it(`Adds an item to cart`,async ()=>{
     expect(changeSize).toBeCalled();
   });
 });
+
+test(`An item can't be added twice`,()=>{
+
+});

@@ -20,6 +20,10 @@ const App = ()=> {
       setCart([...cart,info]);
   } 
 
+  const removeItemFromCart = (info)=>{
+    setCart(cart.filter(item => item.name !== info.name));
+  }
+
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
