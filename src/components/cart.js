@@ -10,8 +10,9 @@ const Cart = ({cart, removeCart, isRendered})=>{
       {cart.map((purchase)=>
           <CartItem key={uniqid()} item={purchase} removeCart={()=>{removeCart()}}/>
       )};
+      <button>Checkout</button>
+      <button>Back</button>
     </div>
-
   );
 }
 export default Cart;
