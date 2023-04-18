@@ -54,6 +54,3 @@ it(`Adds an item to cart`,async ()=>{
   });
 });
 
-test(`An item can't be added twice`,()=>{
-
-});
