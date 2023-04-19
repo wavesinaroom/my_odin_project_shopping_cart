@@ -48,3 +48,17 @@ it(`Checks out items`, async()=>{
     expect(screen.queryByRole(`button`, {name:`Checkout`})).not.toBeInTheDocument();
 });
 
+it(`goes back to main`, async()=>{
+  const removeMock = jest.fn();
+  const renderBool = true;
+  
+  render(
+    <Cart cart={Items} removeCart={removeMock} isRendered={renderBool}/> 
+  );
+
+  fireEvent.click(screen.getByRole(`button`, {name: `Back`}));
+
+  expect(screen.queryByRole(`button`, {name: `Back`})).not.toBeInTheDocument();
+  expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
+})
+

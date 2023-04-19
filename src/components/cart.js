@@ -4,20 +4,24 @@ import {useState} from 'react';
 
 const Cart = ({cart, removeCart, isRendered})=>{
   const [isNotified, setIsNotified] = useState(false);
+  const [back, setBack] = useState(false)
 
   const checkOut = ()=>{
     setIsNotified(true);
   }
 
-  if(!isRendered)
-    return null;
+  const backToMain = ()=>{
+    setBack(true);
+  }
 
+  if(!isRendered||back)
+    return null;
 
   if(isNotified){
     return(
     <div className="cart-items">
       <p>Thanks for shopping at VST store</p>
-      <button>Back</button>
+      <button onClick={()=>{backToMain();}}>Back</button>
     </div>
     );
   }
@@ -28,7 +32,7 @@ const Cart = ({cart, removeCart, isRendered})=>{
         <CartItem key={uniqid()} item={purchase} removeCart={()=>{removeCart()}}/>
       )}
       <button onClick={()=>{checkOut();}}>Checkout</button>
-      <button>Back</button>
+      <button onClick={()=>{backToMain();}}>Back</button>
     </div>
   );
 }
