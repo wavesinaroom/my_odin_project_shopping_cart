@@ -34,7 +34,7 @@ it(`toggles cart panel off`,async()=>{
 });
 
 
-it(`Checks out items`, async()=>{
+it(`checks out items`, ()=>{
   const removeMock = jest.fn();
   const renderBool = true;
   
@@ -48,7 +48,7 @@ it(`Checks out items`, async()=>{
     expect(screen.queryByRole(`button`, {name:`Checkout`})).not.toBeInTheDocument();
 });
 
-it(`goes back to main`, async()=>{
+it(`goes back to main`, ()=>{
   const removeMock = jest.fn();
   const renderBool = true;
   
@@ -60,5 +60,19 @@ it(`goes back to main`, async()=>{
 
   expect(screen.queryByRole(`button`, {name: `Back`})).not.toBeInTheDocument();
   expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
-})
+});
+
+it(`deletes an item`,()=>{
+  const renderBool = true;
+  const item = {name:`Reaper`};
+  const removeMock = jest.fn(); 
+
+  render(
+    <Cart cart={Items} removeCart={()=>removeMock(item)} isRendered={renderBool}/> 
+  );
+
+  fireEvent.click(screen.getByTestId(`Reaper`));
+  expect(removeMock).toBeCalledWith(item);
+
+});
 
