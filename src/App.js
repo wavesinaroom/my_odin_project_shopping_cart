@@ -29,7 +29,9 @@ const App = ()=> {
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
-      <img alt='cart-icon' onClick={()=>{setIsCarRendered(!isCartRendered)}}></img>
+      <div className='cart'>
+        <img alt='cart-icon' onClick={()=>{setIsCarRendered(!isCartRendered)}}></img>
+      </div>
       <Cart cart={cart} removeCart={removeItemFromCart} isRendered={isCartRendered}/>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
