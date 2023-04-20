@@ -31,8 +31,8 @@ const App = ()=> {
       <h1 data-testid='main-title'>VST shop</h1>
       <div className='cart'>
         <img alt='cart-icon' onClick={()=>{setIsCarRendered(!isCartRendered)}}></img>
+        <Cart cart={cart} removeCart={removeItemFromCart} isRendered={isCartRendered}/>
       </div>
-      <Cart cart={cart} removeCart={removeItemFromCart} isRendered={isCartRendered}/>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
           <Item key={uniqid()} details={item} addCart={addItemToCart}/>
