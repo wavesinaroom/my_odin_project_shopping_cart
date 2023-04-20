@@ -1,10 +1,11 @@
 import CartItem from './cartItem'
 import uniqid from 'uniqid'
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const Cart = ({cart, removeCart, isRendered})=>{
   const [isNotified, setIsNotified] = useState(false);
   const [back, setBack] = useState(false)
+  const [total, setTotal] = useState(cart.reduce((value,item)=>value+=item.price,0));
 
   const checkOut = ()=>{
     setIsNotified(true);
@@ -13,6 +14,10 @@ const Cart = ({cart, removeCart, isRendered})=>{
   const backToMain = ()=>{
     setBack(true);
   }
+
+  useEffect(()=>{
+    setTotal(cart.reduce((value, item)=> value+=item.price,0));
+  },[cart, total])
 
   if(!isRendered||back)
     return null;
@@ -33,6 +38,10 @@ const Cart = ({cart, removeCart, isRendered})=>{
       )}
       <button onClick={()=>{checkOut();}}>Checkout</button>
       <button onClick={()=>{backToMain();}}>Back</button>
+      <div className='cart-total'>
+        <p>Total</p>
+        <p>{total}</p>
+      </div>
     </div>
   );
 }

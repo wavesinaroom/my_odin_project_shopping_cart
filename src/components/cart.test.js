@@ -9,30 +9,26 @@ import Items from './itemsList.json'
 
 afterEach(cleanup);
 
+it(`toggles cart panel on/off`,async()=>{
+  render(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<App/>}/>
+      </Routes>
+    </MemoryRouter>);
 
-render(
-  <MemoryRouter>
-    <Routes>
-      <Route path="/" element={<App/>}/>
-    </Routes>
-  </MemoryRouter>);
-
-it(`toggles cart panel on`,async()=>{
   userEvent.click(screen.getByAltText(`cart-icon`));
 
   await waitFor(()=>{
     expect(screen.getByRole(`button`, {name: `Checkout`})).toBeInTheDocument();
   });
-});
 
-it(`toggles cart panel off`,async()=>{
   userEvent.click(screen.queryByAltText(`cart-icon`));
 
   await waitFor(()=>{
     expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
   });
 });
-
 
 it(`checks out items`, ()=>{
   const removeMock = jest.fn();
@@ -76,3 +72,15 @@ it(`deletes an item`,()=>{
 
 });
 
+it(`gets total price`,()=>{
+  const renderBool = true;
+  const item = {name:`Reaper`};
+  const removeMock = jest.fn(); 
+  const total = 1633;
+  
+  render(
+    <Cart cart={Items} removeCart={()=>removeMock(item)} isRendered={renderBool} total={total}/> 
+  );
+
+  expect(screen.getByText(`1633`)).toBeInTheDocument();
+});
