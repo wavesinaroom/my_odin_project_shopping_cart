@@ -1,87 +1,87 @@
 [
   {
-    "pic": "url",
+    "pic": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstash.reaper.fm%2F40780%2FScreenshot%2520(55).png&f=1&nofb=1&ipt=da7b8e280696b6b12d8c900e254221c19f13b8280b4b221840c2f4612c70ebb2&ipo=images",
     "name": "Reaper",
-    "description": "Description",
-    "type": "Type",
+    "description": "Reaper is a complete audio production application for computers, offering a multitrack audio and MIDI recording, editing, processing, mixing and mastering toolset",
+    "type": "DAW",
     "price": "60"
   },
   {
-    "pic": "url",
+    "pic": "https://www.native-instruments.com/typo3temp/pics/img-ce-intro_paragraph_facelift_fm8-694a2405d098aed304198eddeca93a15-d.jpg",
     "name": "FM8",
-    "description": "Description",
-    "type": "Type",
-    "price": ""
+    "description": "Native Instruments has harnessed the power of FM synthesis. The strengths of digital are manifest in FM8’s powerful audio engine which generates breath-taking, brilliantly dynamic FM sound in pristine quality.",
+    "type": "Plugin",
+    "price": "149"
   },
   {
-    "pic": "url",
+    "pic": "https://www.bluecataudio.com//Vault/Products/Product_TripleEQ/Screenshots/dual_full.png",
     "name": "Blue Cat Triple EQ",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "This free EQ includes a low shelf filter, a high shelf filter and a boost/cut peak filter. Its wide range of gain (+/-40 dB per band) and bandwidth (.01 to 5 Octave) makes it very versatile to create any filter shape.",
+    "type": "Plugin",
+    "price": "Free"
   },
   {
-    "pic": "url",
+    "pic": "https://u-he.com/products/diva/assets/images/uhe-diva-screenshot-fullui-1150x642.jpg",
     "name": "Diva",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "Diva's oscillators, filters and envelopes (which can be mixed and matched) closely model components also found in some of the great monophonic and polyphonic synthesizers of yesteryear.",
+    "type": "Plugin",
+    "price": "179"
   },
   {
-    "pic": "url",
+    "pic": "https://assets.bitwig.net/media/image/bitwig-home_2111_bws-4_lg/Bitwig-Home_2111_BWS-4_LG-SD.png?v=15xVP9j1Rn",
     "name": "Bitwig Studio",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "Bitwig Studio seems to be living its life at something of an accelerated rate at the moment. We are seeing a major release once every couple of years, which is quite an aggressive schedule, and the expansion of features from each version to the next also tends to be quite considerable.",
+    "type": "DAW",
+    "price": "400"
   },
   {
-    "pic": "url",
+    "pic": "https://www.fabfilter.com/img/products/pro-c-2-intro.jpg",
     "name": "Pro-C 2",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "FabFilter Pro-C 2 is a high-quality compressor plug-in for the most demanding engineers. Whether you need subtle mastering compression, an upfront lead vocal, that magic drum glue or deep EDM pumping: Pro-C 2 gets the job done with style",
+    "type": "Plugin",
+    "price": "169"
   },
   {
-    "pic": "url",
+    "pic": "https://www.pspaudioware.com/assets/products/PSP_VW2s.jpg",
     "name": "PSP Vintage Warmer",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "PSP VintageWarmer2 is a high-quality digital simulation of an analog-style single or multi-band compressor/limiter. It combines rich, warm analog processing with a straightforward user interface, and comes with a comprehensive library of presets.",
+    "type": "Plugin",
+    "price": "149"
   },
   {
-    "pic": "url",
+    "pic": "https://sugar-bytes.de/storage/app/media/effectrix/s1.jpg",
     "name": "Effectrix",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "Effectrix is a professional multi-effect sequencer, a game-changer in the way contemporary music is made. By painting colored blocks across a sequencer, quite simply, your tracks metamorphose into fireworks. Looping, Scratching, Reverse & Stretching – in real-time and on-the-fly.",
+    "type": "Plugin",
+    "price": "119"
   },
   {
-    "pic": "url",
+    "pic": "https://d16.pl/images/products/decimort2/overview/gui.jpg",
     "name": "Decimort 2",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "Electronic music producers (especially in Hip-Hop) have always been aware that classic samplers (such as early Akai and E-MU units) had a character and sound of their own. They added a grit and colour to the samples and loops they played back which made them sound Fat and sit well in a mix.",
+    "type": "Plugin",
+    "price": "49"
   },
   {
-    "pic": "url",
+    "pic": "https://www.airmusictech.com/static/d7b687ac37b54e833d379e47c8dbdb84/8665d/xpand-2-vst-00.avif",
     "name": "Xpand!2",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "Multitimbral All-In-One Workstation",
+    "type": "Plugin",
+    "price": "100"
   },
   {
-    "pic": "url",
+    "pic": "https://tal-software.com/images/products/tal-sampler-1-444.jpg",
     "name": "TAL-Sampler",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "TAL-Sampler is not just a sample player. It's a full featured analog modeled synthesizer with a sampler engine as sound source, including a powerful modulation matrix and high quality self-oscillating filters.",
+    "type": "Plugin",
+    "price": "60"
   },
   {
-    "pic": "url",
+    "pic": "https://static.www.applied-acoustics.com/images/chromaphone-3-hero-838w.png",
     "name": "Chromaphone",
-    "description": "Description",
-    "type": "Type",
-    "price": "Price"
+    "description": "https://static.www.applied-acoustics.com/images/chromaphone-3-hero-838w.png",
+    "type": "Plugin",
+    "price": "199"
   }
 ]
 
