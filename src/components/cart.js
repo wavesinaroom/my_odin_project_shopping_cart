@@ -2,17 +2,22 @@ import CartItem from './cartItem'
 import uniqid from 'uniqid'
 import {useEffect, useState} from 'react';
 
-const Cart = ({cart, removeCart, isRendered})=>{
+const Cart = ({inputCart, isRendered})=>{
+  const [cart, setCart] = useState(inputCart); 
   const [isNotified, setIsNotified] = useState(false);
   const [back, setBack] = useState(false)
   const [total, setTotal] = useState(cart.reduce((value,item)=>value+=item.price,0));
 
-  const checkOut = ()=>{
+  function checkOut (){
     setIsNotified(true);
   }
 
-  const backToMain = ()=>{
+  function backToMain(){
     setBack(true);
+  }
+
+  function removeCart(info){
+    setCart(cart.filter(item => item.name !== info.name));
   }
 
   useEffect(()=>{
@@ -34,13 +39,13 @@ const Cart = ({cart, removeCart, isRendered})=>{
   return(
     <div className="cart-items">
       {cart.map((purchase)=>
-        <CartItem key={uniqid()} item={purchase} removeCart={()=>{removeCart()}}/>
+        <CartItem key={uniqid()} item={purchase} removeCart={item => removeCart(item)}/>
       )}
       <button onClick={()=>{checkOut();}}>Checkout</button>
       <button onClick={()=>{backToMain();}}>Back</button>
       <div className='cart-total'>
         <p>Total</p>
-        <p>{total}</p>
+        <p data-testid='total-price'>{total}</p>
       </div>
     </div>
   );

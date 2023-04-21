@@ -4,17 +4,17 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ItemPanel from './itemPanel';
-import App from '../App';
+import Items from './itemsList.json'
+import App from '../App'
 
 afterEach(cleanup);
 const details = {pic: `a pic`, title:`a title`, description:`a description`}
-const addCartMock =jest.fn(); 
 
 test(`Content renders`,()=>{
 
   render(
     <MemoryRouter>
-      <ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>;
+      <ItemPanel info={details} cart={Items}/>;
     </MemoryRouter>);
 
   const image = screen.getByAltText(`${details.title}`);
@@ -25,15 +25,17 @@ test(`Content renders`,()=>{
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
-test(`Add button click event`,()=>{
+test(`Add button click event`,async()=>{
   render(
     <MemoryRouter>
-      <ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>);
+      <ItemPanel info={details} cart={Items}/>);
     </MemoryRouter>);
 
-  fireEvent.click(screen.queryByText(`Add`));
-  expect(addCartMock).toHaveBeenCalledWith(details);
+  userEvent.click(screen.queryByRole(`button`, {name: `Add`}));
+
+  await waitFor(()=>{
   expect(screen.getByText(`Item added to cart`)).toBeInTheDocument(); 
+  })
   expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
 });
 
@@ -41,8 +43,8 @@ test(`X button returns to main`, async()=>{
   render(
     <MemoryRouter initialEntries={['/item']}>
       <Routes>
-        <Route path='/item' element={<ItemPanel info={details} addCart={()=>{addCartMock(details)}}/>}/>
-        <Route path='/' element={<App/>}/>
+        <Route path='/item' element={<ItemPanel info={details} cart={Items}/>}/>
+        <Route path='/' element={<App cart={Items}/>}/>
       </Routes>
     </MemoryRouter>
   );
