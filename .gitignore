@@ -24,4 +24,4 @@ yarn-error.log*
 
 # Vim
 *.swp
-shopping_cart
+Session.vim

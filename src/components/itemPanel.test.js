@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup,screen,  waitFor, fireEvent} from '@testing-library/react';
+import { render, cleanup,screen,  waitFor} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
