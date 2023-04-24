@@ -1,4 +1,10 @@
-const CartItem = ({item,removeCart})=>{
+
+const CartItem = ({item, setCart})=>{
+
+  function removeCart(info){
+    setCart(cart => cart.filter(item => item.name !== info.name));
+  }
+
   return(
     <div className="cart-item">
       <button data-testid={item.name} onClick={()=>{removeCart({item})}}>-</button>
