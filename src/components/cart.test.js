@@ -10,25 +10,22 @@ afterEach(cleanup);
 const setMock = jest.fn();
 const renderBool = true;
 
-it.only(`checks out items`, async()=>{
+it(`checks out items`, async()=>{
   
   render(
     <Cart setCart={setMock} cart={Items} isRendered={renderBool}/> 
   );
 
-  userEvent.click(screen.getByRole(`button`, {name: `Checkout`}));
-  await waitFor(()=>{
-    expect(screen.getByText(`Thanks for shopping at VST store`)).toBeInTheDocument();
-  })
-    expect(screen.queryByRole(`button`, {name:`Checkout`})).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole(`button`, {name: `Checkout`}));
+
+  expect(screen.getByText(`Thanks for shopping at VST store`)).toBeInTheDocument();
+  expect(screen.queryByRole(`button`, {name:`Checkout`})).not.toBeInTheDocument();
 });
 
-it(`goes back to main`, ()=>{
-  const removeMock = jest.fn();
-  const renderBool = true;
+it.only(`goes back to main`, ()=>{
   
   render(
-    <Cart inputCart={Items} isRendered={renderBool}/> 
+    <Cart setCart={setMock} cart={Items} isRendered={renderBool}/> 
   );
 
   fireEvent.click(screen.getByRole(`button`, {name: `Back`}));
