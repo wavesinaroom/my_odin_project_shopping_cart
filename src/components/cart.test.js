@@ -22,7 +22,7 @@ it(`checks out items`, async()=>{
   expect(screen.queryByRole(`button`, {name:`Checkout`})).not.toBeInTheDocument();
 });
 
-it.only(`goes back to main`, ()=>{
+it(`goes back to main`, ()=>{
   
   render(
     <Cart setCart={setMock} cart={Items} isRendered={renderBool}/> 
@@ -34,17 +34,14 @@ it.only(`goes back to main`, ()=>{
   expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
 });
 
-it(`deletes an item`,async()=>{
-  const renderBool = true;
+it.only(`deletes an item`,async()=>{
 
   render(
-    <Cart input={Items}  isRendered={renderBool}/> 
+    <Cart setCart={setMock} cart={Items}  isRendered={renderBool}/> 
   );
 
-  userEvent.click(screen.getByTestId(`Reaper`));
-  await waitFor(()=>{
-    expect(screen.queryByTestId(`Reaper`)).toBeNull();
-  }) 
+  fireEvent.click(screen.getByTestId(`Reaper`));
+  expect(setMock).toBeCalled();
 });
 
 it(`gets total price`,()=>{
