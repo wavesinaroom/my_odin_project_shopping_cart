@@ -1,19 +1,17 @@
   import {useState} from "react";
   import { Link } from "react-router-dom";
 
-  const ItemPanel = ({info,cart}) => {
-  //Add function implementation should be here instead. Bring cart as props.
+  const ItemPanel = ({info,setCart}) => {
 
     const [isAdded,setIsAdded] = useState(false);
-    const [toCart, setToCart] = useState(cart);
 
     const add = ()=>{
-      setToCart([...toCart, info]);
+      setCart(cart => [...cart, info]);
       setIsAdded(true);
     }
     return(
       <>
-        <Link to={{pathname:`/`, state:{cart: toCart}}} ><button>X</button></Link>
+        <Link to='/' ><button>X</button></Link>
         <img src={info.pic} alt={info.title}></img>
         <h1>{info.title}</h1>
         <p>{info.description}</p>
