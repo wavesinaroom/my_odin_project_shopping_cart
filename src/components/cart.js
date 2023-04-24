@@ -2,11 +2,11 @@ import CartItem from './cartItem'
 import uniqid from 'uniqid'
 import {useEffect, useState} from 'react';
 
-const Cart = ({inputCart, isRendered})=>{
-  const [cart, setCart] = useState(inputCart); 
+const Cart = ({setCart, cart, isRendered})=>{
+  const renderedCart = cart;
   const [isNotified, setIsNotified] = useState(false);
   const [back, setBack] = useState(false)
-  const [total, setTotal] = useState(cart.reduce((value,item)=>value+=item.price,0));
+  const [total, setTotal] = useState(0)
 
   function checkOut (){
     setIsNotified(true);
@@ -16,13 +16,8 @@ const Cart = ({inputCart, isRendered})=>{
     setBack(true);
   }
 
-  function removeCart(info){
-    setCart(cart.filter(item => item.name !== info.name));
-  }
-
   useEffect(()=>{
-    setTotal(cart.reduce((value, item)=> value+=item.price,0));
-  },[cart, total])
+  });
 
   if(!isRendered||back)
     return null;
@@ -38,8 +33,8 @@ const Cart = ({inputCart, isRendered})=>{
   
   return(
     <div className="cart-items">
-      {cart.map((purchase)=>
-        <CartItem key={uniqid()} item={purchase} removeCart={item => removeCart(item)}/>
+      {renderedCart.map((purchase)=>
+        <CartItem key={uniqid()} item={purchase} setCart={setCart}/>
       )}
       <button onClick={()=>{checkOut();}}>Checkout</button>
       <button onClick={()=>{backToMain();}}>Back</button>
