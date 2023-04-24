@@ -33,6 +33,26 @@ it(`Renders twelve items`, ()=>{
   expect(screen.getAllByTestId('item-test')).toHaveLength(12);
 }); 
 
+test.skip(`toggles cart panel on/off`,async()=>{
+  render(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<App/>}/>
+      </Routes>
+    </MemoryRouter>);
+
+  userEvent.click(screen.getByAltText(`cart-icon`));
+
+  await waitFor(()=>{
+    expect(screen.getByRole(`button`, {name: `Checkout`})).toBeInTheDocument();
+  });
+
+  userEvent.click(screen.queryByAltText(`cart-icon`));
+
+  await waitFor(()=>{
+    expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
+  });
+});
 it(`Adds an item to cart`,async ()=>{
   const changeSize = jest.fn();
   const handleClick = jest.spyOn(React, "useState");

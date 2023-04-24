@@ -6,20 +6,21 @@ import uniqid from 'uniqid'
 import Cart from './components/cart';
 
 
-const App = ({inputCart})=> {
+const App = ()=> {
   const items = Items;
   const [isCartRendered, setIsCarRendered] = useState(false);
+  const [cart, setCart] = useState([]);
 
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
       <div className='cart'>
         <img alt='cart-icon' onClick={()=>{setIsCarRendered(!isCartRendered)}}></img>
-        <Cart cart={inputCart}  isRendered={isCartRendered}/>
+        <Cart setCart={setCart} cart={cart}  isRendered={isCartRendered}/>
       </div>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
-          <Item key={uniqid()} details={item} cart={inputCart}/>
+          <Item key={uniqid()} details={item} setCart={setCart}/>
         )}
       </div>
     </>
