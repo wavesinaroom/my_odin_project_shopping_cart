@@ -6,7 +6,7 @@ const Cart = ({setCart, cart, isRendered})=>{
   const renderedCart = cart;
   const [isNotified, setIsNotified] = useState(false);
   const [back, setBack] = useState(false)
-  const [total, setTotal] = useState(0)
+  const total = cart.reduce((sum, item)=> sum+= item.price,0);
 
   function checkOut (){
     setIsNotified(true);
@@ -15,9 +15,6 @@ const Cart = ({setCart, cart, isRendered})=>{
   function backToMain(){
     setBack(true);
   }
-
-  useEffect(()=>{
-  });
 
   if(!isRendered||back)
     return null;

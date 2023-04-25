@@ -34,7 +34,7 @@ it(`goes back to main`, ()=>{
   expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
 });
 
-it.only(`deletes an item`,async()=>{
+it(`deletes an item`,async()=>{
 
   render(
     <Cart setCart={setMock} cart={Items}  isRendered={renderBool}/> 
