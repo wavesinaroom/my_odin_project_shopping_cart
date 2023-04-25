@@ -1,20 +1,21 @@
 import React from 'react';
-import { render, cleanup,screen,  waitFor} from '@testing-library/react';
+import { render, cleanup,screen,  waitFor, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ItemPanel from './itemPanel';
-import Items from './itemsList.json'
 import App from '../App'
+
 
 afterEach(cleanup);
 const details = {pic: `a pic`, title:`a title`, description:`a description`}
+const setMock = jest.fn();
 
-test(`Content renders`,()=>{
+it(`renders content`,()=>{
 
   render(
     <MemoryRouter>
-      <ItemPanel info={details} cart={Items}/>;
+      <ItemPanel info={details} setCart={setMock}/>;
     </MemoryRouter>);
 
   const image = screen.getByAltText(`${details.title}`);
@@ -25,34 +26,35 @@ test(`Content renders`,()=>{
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
-test(`Add button click event`,async()=>{
+it(`clicks an add button and notifies added item`,()=>{
   render(
     <MemoryRouter>
-      <ItemPanel info={details} cart={Items}/>);
+      <Routes>
+        <Route path='/item' element={<ItemPanel info={details} setCart={setMock}/>}/>
+        <Route path='/' element={<App/>}/>
+      </Routes>
     </MemoryRouter>);
 
-  userEvent.click(screen.queryByRole(`button`, {name: `Add`}));
+  fireEvent.click(screen.getByAltText(`Reaper`));
+  fireEvent.click(screen.getByRole(`button`, {name: `Add`}));
 
-  await waitFor(()=>{
   expect(screen.getByText(`Item added to cart`)).toBeInTheDocument(); 
-  })
+  expect(setMock).toBeCalled();
   expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
 });
 
-test(`X button returns to main`, async()=>{
+it(`clicks X button to return to main`, ()=>{
   render(
     <MemoryRouter initialEntries={['/item']}>
       <Routes>
-        <Route path='/item' element={<ItemPanel info={details} cart={Items}/>}/>
-        <Route path='/' element={<App cart={Items}/>}/>
+        <Route path='/item' element={<ItemPanel info={details} setCart={setMock}/>}/>
+        <Route path='/' element={<App/>}/>
       </Routes>
     </MemoryRouter>
   );
 
-  userEvent.click(screen.queryByText(`&times`));
+  fireEvent.click(screen.getByText(`X`));
 
-  await waitFor(()=>{
-    expect(screen.getByRole('heading', `VST shop`)).toBeInTheDocument();
-  });
+  expect(screen.getByText(`VST shop`)).toBeInTheDocument();
   
 });
