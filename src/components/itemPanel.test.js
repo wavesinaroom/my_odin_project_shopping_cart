@@ -1,41 +1,30 @@
 import React from 'react';
-import { render, cleanup,screen,  waitFor, fireEvent} from '@testing-library/react';
+import { render, cleanup,screen, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ItemPanel from './itemPanel';
-import App from '../App'
 
 
 afterEach(cleanup);
-const details = {pic: `a pic`, title:`a title`, description:`a description`}
+const item = {pic: `a pic`, title:`a title`, description:`a description`}
 const setMock = jest.fn();
 
 it(`renders content`,()=>{
 
   render(
-    <MemoryRouter>
-      <ItemPanel info={details} setCart={setMock}/>;
-    </MemoryRouter>);
+      <ItemPanel item={item} addCart={setMock}/>
+    );
 
-  const image = screen.getByAltText(`${details.title}`);
+  const image = screen.getByAltText(`${item.title}`);
   expect(image).toBeInTheDocument();
-  expect(image).toHaveAttribute(`src`,`${details.pic}`);
-  expect(screen.getByRole(`heading`,`${details.title}`)).toBeInTheDocument();
-  expect(screen.getByText(`${details.description}`)).toBeInTheDocument();
+  expect(image).toHaveAttribute(`src`,`${item.pic}`);
+  expect(screen.getByRole(`heading`,`${item.title}`)).toBeInTheDocument();
+  expect(screen.getByText(`${item.description}`)).toBeInTheDocument();
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
 it(`clicks an add button and notifies added item`,()=>{
-  render(
-    <MemoryRouter>
-      <Routes>
-        <Route path='/item' element={<ItemPanel info={details} setCart={setMock}/>}/>
-        <Route path='/' element={<App/>}/>
-      </Routes>
-    </MemoryRouter>);
+  render(<ItemPanel item={item} addCart={setMock}/>);
 
-  fireEvent.click(screen.getByAltText(`Reaper`));
   fireEvent.click(screen.getByRole(`button`, {name: `Add`}));
 
   expect(screen.getByText(`Item added to cart`)).toBeInTheDocument(); 
@@ -44,17 +33,9 @@ it(`clicks an add button and notifies added item`,()=>{
 });
 
 it(`clicks X button to return to main`, ()=>{
-  render(
-    <MemoryRouter initialEntries={['/item']}>
-      <Routes>
-        <Route path='/item' element={<ItemPanel info={details} setCart={setMock}/>}/>
-        <Route path='/' element={<App/>}/>
-      </Routes>
-    </MemoryRouter>
-  );
-
-  fireEvent.click(screen.getByText(`X`));
-
-  expect(screen.getByText(`VST shop`)).toBeInTheDocument();
+  render(<ItemPanel item={item} addCart={setMock}/>);
+  
+  fireEvent.click(screen.getByRole(`button`, {name:`X`}))
+  expect(screen.queryByText(`X`)).not.toBeInTheDocument();
   
 });

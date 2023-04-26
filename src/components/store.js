@@ -24,7 +24,7 @@ const Store = ()=> {
       </div>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
-          <Item key={uniqid()} item={item} setCart={()=>info => addItem(info)}/>
+          <Item key={uniqid()} item={item} addCart={()=>info => addItem(info)}/>
         )}
       </div>
     </>
