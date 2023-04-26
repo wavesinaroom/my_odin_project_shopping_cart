@@ -1,11 +1,11 @@
-import {Link} from "react-router-dom";
+import ItemPanel from "./itemPanel";
 
-const Item = ({details,cart})=>{
+const Item = ({details,setCart})=>{
 
   return(
     <div className='item' data-testid='item-test'>
       <h4>{details.name}</h4>
-      <Link to={{pathname:`/item`, state:{info:details, cart:cart}}}><img src={details.pic} alt={details.name}></img></Link> 
+      <ItemPanel info={details} setCart={setCart}/> 
       <p>{details.description}</p>
       <p>{details.price}</p>
     </div>

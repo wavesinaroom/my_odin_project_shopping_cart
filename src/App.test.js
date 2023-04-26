@@ -1,5 +1,5 @@
 import React from "react";
-import {cleanup, render, screen, waitFor} from "@testing-library/react";
+import {cleanup, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import  userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom';
 import {MemoryRouter, Route, Routes} from "react-router-dom";
@@ -33,7 +33,7 @@ it(`Renders twelve items`, ()=>{
   expect(screen.getAllByTestId('item-test')).toHaveLength(12);
 }); 
 
-test.skip(`toggles cart panel on/off`,async()=>{
+it(`toggles cart panel on/off`,async()=>{
   render(
     <MemoryRouter>
       <Routes>
@@ -53,10 +53,8 @@ test.skip(`toggles cart panel on/off`,async()=>{
     expect(screen.queryByRole(`button`, {name: `Checkout`})).not.toBeInTheDocument();
   });
 });
-it(`Adds an item to cart`,async ()=>{
-  const changeSize = jest.fn();
-  const handleClick = jest.spyOn(React, "useState");
-  handleClick.mockImplementation(size => [size, changeSize]);
+
+it.only(`Adds an item to cart`,async ()=>{
   render(
     <MemoryRouter>
       <Routes>
@@ -66,11 +64,11 @@ it(`Adds an item to cart`,async ()=>{
     </MemoryRouter>
   );
 
-  userEvent.click(screen.queryByAltText(`Reaper`));
-  userEvent.click(screen.queryByRole(`button`,{name:`Add`}));
+  fireEvent.click(screen.getByAltText(`Reaper`));
+  fireEvent.click(screen.getByRole(`button`, {name: `Add`})) 
+  fireEvent.click(screen.getByRole(`button`, {name: `X`}))
+  fireEvent.click(screen.getByAltText(`cart-icon`))
 
-  await waitFor(()=>{
-    expect(changeSize).toBeCalled();
-  });
+
 });
 

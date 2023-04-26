@@ -11,6 +11,10 @@ const App = ()=> {
   const [isCartRendered, setIsCarRendered] = useState(false);
   const [cart, setCart] = useState([]);
 
+  function addItem (info){
+    setCart(...cart,info);
+  }
+
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
@@ -20,7 +24,7 @@ const App = ()=> {
       </div>
       <div data-testid='items-display' className='display'>
         {items.map((item)=>
-          <Item key={uniqid()} details={item} setCart={setCart}/>
+          <Item key={uniqid()} details={item} setCart={()=>info => addItem(info)}/>
         )}
       </div>
     </>
