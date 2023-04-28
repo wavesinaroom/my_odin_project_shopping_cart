@@ -1,13 +1,15 @@
-import {Link} from "react-router-dom";
+const Item = ({item, setItem})=>{
 
-const Item = ({details,cart})=>{
+  function handleSetItem(){
+    setItem(item);
+  }
 
   return(
     <div className='item' data-testid='item-test'>
-      <h4>{details.name}</h4>
-      <Link to={{pathname:`/item`, state:{info:details, cart:cart}}}><img src={details.pic} alt={details.name}></img></Link> 
-      <p>{details.description}</p>
-      <p>{details.price}</p>
+      <h4>{item.name}</h4>
+      <img src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
+      <p>{item.description}</p>
+      <p>{item.price}</p>
     </div>
   );
 
