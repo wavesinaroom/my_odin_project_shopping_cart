@@ -1,3 +1,4 @@
+//use collapsible here
 import CartItem from './cartItem'
 import uniqid from 'uniqid'
 import {useEffect, useState} from 'react';

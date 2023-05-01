@@ -11,6 +11,7 @@ const App = ()=> {
   const [isCartRendered, setIsCarRendered] = useState(false);
   const [cart, setCart] = useState([]);
   const [item,setItem] = useState(null);
+  const [showInfo,setShowInfo] = useState(false);
 
   return (
     <>
@@ -24,7 +25,7 @@ const App = ()=> {
           <Item key={uniqid()} item={item} setItem={setItem}/>
         )}
       </div>
-      <ItemPanel item={item} setCart={setCart}/>   
+      <ItemPanel item={item} setCart={setCart} show={showInfo} onClickOutside={()=>{setShowInfo(false)}}/>   
     </>
   );
 }
