@@ -8,12 +8,11 @@ import Store from './store';
 afterEach(cleanup);
 const itemMock = {pic: `a pic`, title:`a title`, description:`a description`}
 const setMock = jest.fn();
-let show = true;
-const clickOutMock = jest.fn(show=>!show);
+const clickOutMock = jest.fn();
 
 it(`renders content`,()=>{
 
-  render(<ItemPanel item={itemMock} setCart={setMock} show={show} onClickOutside={clickOutMock} />);
+  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock} />);
 
   expect(screen.getByAltText(`${itemMock.title}`)).toBeInTheDocument();
   expect(screen.getByAltText(`${itemMock.title}`)).toHaveAttribute(`src`,`${itemMock.pic}`);
@@ -23,7 +22,7 @@ it(`renders content`,()=>{
 });
 
 it(`clicks an add button and notifies added item`,()=>{
-  render(<ItemPanel item={itemMock} setCart={setMock} show={show} onClickOutside={clickOutMock}/>);
+  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock}/>);
 
   fireEvent.click(screen.getByRole(`button`, {name: `Add`}));
 
@@ -33,7 +32,7 @@ it(`clicks an add button and notifies added item`,()=>{
 });
 
 it(`clicks X button to return to main`, ()=>{
-  render(<ItemPanel item={itemMock} setCart={setMock} show={show} onClickOutside={clickOutMock}/>);
+  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock}/>);
 
   fireEvent.click(screen.getByRole(`button`, {name: `X`}));
 
@@ -41,16 +40,3 @@ it(`clicks X button to return to main`, ()=>{
   expect(screen.queryByRole(`button`, {name: `X`})).toBeNull();
 });
 
-it.skip(`clicks outside component to return to main`,()=>{
-  render( 
-    <>
-      <Store/>
-      <ItemPanel item={itemMock} setCart={setMock} show={show} onClickOutside={clickOutMock}/>
-    </>
-  );
-
-  fireEvent.click(screen.getByAltText(`Reaper`));
-  console.log(show)
-
-  expect(screen.queryByRole(`button`, {name: `Add`})).not.toBeInTheDocument();
-});
