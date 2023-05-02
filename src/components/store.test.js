@@ -1,46 +1,25 @@
-
 import React from "react";
 import {cleanup, render, screen, waitFor} from "@testing-library/react";
 import  userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom';
-import {MemoryRouter, Route, Routes} from "react-router-dom";
-import App from "./App"
-import ItemPanel from "./components/itemPanel";
+import Store from "./store";
 
 afterEach(cleanup);
 
-it(`Renders correctly`,()=>{
-  render(
-    <MemoryRouter>
-      <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path='/item' element={<ItemPanel/>}/>
-      </Routes>
-    </MemoryRouter>
-  );
+it(`renders correctly`,()=>{
+  render(<Store/>);
   expect(screen.getByTestId(`main-title`)).toBeInTheDocument();
   expect(screen.getByTestId(`items-display`)).toBeInTheDocument();
+  expect(screen.getByTestId(`cart-display`)).toBeInTheDocument();
 });
 
-it(`Renders twelve items`, ()=>{
-  render(
-    <MemoryRouter>
-      <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path="/item" element={<ItemPanel/>}/>
-      </Routes>
-    </MemoryRouter>
-  );
+it(`renders twelve items`, ()=>{
+  render(<Store/>);
   expect(screen.getAllByTestId('item-test')).toHaveLength(12);
 }); 
 
-test.skip(`toggles cart panel on/off`,async()=>{
-  render(
-    <MemoryRouter>
-      <Routes>
-        <Route path="/" element={<App/>}/>
-      </Routes>
-    </MemoryRouter>);
+it(`toggles cart panel on/off`,async()=>{
+  render(<Store/>);
 
   userEvent.click(screen.getByAltText(`cart-icon`));
 
@@ -55,24 +34,19 @@ test.skip(`toggles cart panel on/off`,async()=>{
   });
 });
 
-it(`Adds an item to cart`,async ()=>{
-  const changeSize = jest.fn();
-  const handleClick = jest.spyOn(React, "useState");
-  handleClick.mockImplementation(size => [size, changeSize]);
-  render(
-    <MemoryRouter>
-      <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path="/item" element={<ItemPanel/>}/>
-      </Routes>
-    </MemoryRouter>
-  );
+it(`toggles item panel on/off`,async ()=>{
+  render(<Store/>);
 
-  userEvent.click(screen.queryByAltText(`Reaper`));
-  userEvent.click(screen.queryByRole(`button`,{name:`Add`}));
+  userEvent.click(screen.getByAltText(`Reaper`));
 
   await waitFor(()=>{
-    expect(changeSize).toBeCalled();
+    expect(screen.getByRole(`button`,{name:`Add`})).toBeInTheDocument();
+  });
+
+  userEvent.click(screen.getByAltText(`Reaper`));
+
+  await waitFor(()=>{
+    expect(screen.queryByRole(`button`, {name:`Add`})).not.toBeInTheDocument();
   });
 });
 

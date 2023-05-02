@@ -1,7 +1,8 @@
-const Item = ({item, setItem})=>{
+const Item = ({item, setItem, openPanel})=>{
 
   function handleSetItem(){
     setItem(item);
+    openPanel();
   }
 
   return(
