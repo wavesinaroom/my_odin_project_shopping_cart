@@ -10,7 +10,7 @@ const Cart = ({setCart, cart})=>{
   const [isRendered, setIsRendered] = useState(false);
   const [isNotified, setIsNotified] = useState(false);
   const [back, setBack] = useState(false)
-  useOnClickOutside(ref, ()=>setIsRendered(false));
+  useOnClickOutside(ref, ()=> setIsRendered(false));
 
   function checkOut (){
     setIsNotified(true);
@@ -38,7 +38,7 @@ const Cart = ({setCart, cart})=>{
     );
   }
 
-  if(!isRendered||back)
+  if(back)
     return null;
 
   if(isNotified){
@@ -54,7 +54,7 @@ const Cart = ({setCart, cart})=>{
     <>
       <img alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
       {isRendered?
-      <div ref={ref} className="cart-items">
+      (<div ref={ref} className="cart-items">
         {renderedCart.map((purchase)=>
           <CartItem key={uniqid()} item={purchase} setCart={setCart}/>
         )}
@@ -64,7 +64,7 @@ const Cart = ({setCart, cart})=>{
           <p>Total</p>
           <p data-testid='total-price'>{total}</p>
         </div>
-      </div>:null}
+      </div>):(null)}
     </>
   );
 }
