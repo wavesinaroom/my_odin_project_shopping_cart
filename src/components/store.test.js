@@ -1,5 +1,5 @@
 import React from "react";
-import {cleanup, render, screen, waitFor} from "@testing-library/react";
+import {cleanup, render, screen, waitFor, fireEvent} from "@testing-library/react";
 import  userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom';
 import Store from "./store";
@@ -71,5 +71,25 @@ it(`adds an item`,async ()=>{
   await waitFor(()=>{
     expect(screen.getByTestId(`Reaper`)).toBeInTheDocument();
   });
+
+});
+
+
+it(`removes an item`,()=>{
+  render(<Store/>);
+
+  fireEvent.click(screen.getByAltText(`Reaper`));
+
+  expect(screen.getByRole(`button`,{name:`Add`})).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole(`button`, {name:`Add`}));
+  fireEvent.click(screen.getByAltText(`Reaper`));
+
+  expect(screen.queryByRole(`button`, {name:`Add`})).not.toBeInTheDocument();
+
+  fireEvent.click(screen.getByAltText(`cart-icon`))
+  fireEvent.click(screen.getByRole(`button`, {name:`-`}));
+
+  expect(screen.queryByTestId(`Reaper`)).not.toBeInTheDocument();
 
 });

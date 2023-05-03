@@ -11,12 +11,15 @@ const Store = ()=> {
   const [cart, setCart] = useState([]);
   const [item,setItem] = useState(null);
 
+  function remove(target){
+    setCart(cart.filter(item=> item.name !== target.item.name))
+  }
 
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
       <div data-testid='cart-display' className='cart'>
-        <Cart setCart={setCart} cart={cart}/>
+        <Cart setCart={target=>(remove(target))} cart={cart}/>
       </div>
       <div data-testid='items-display' className='display'>
         {Items.map((item)=>
