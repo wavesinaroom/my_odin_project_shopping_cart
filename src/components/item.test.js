@@ -8,9 +8,10 @@ import Item from './item';
 afterEach(cleanup);
 const itemMock = {pic: `a pic`, name:`a name`, description:`a description`, type:`VST`, price:0}
 const setMock = jest.fn();
+const panelMock = jest.fn();
 
 it(`renders content`,()=>{
-  render(<Item item={itemMock} setItem={setMock}/>);
+  render(<Item item={itemMock} setItem={setMock} openPanel={panelMock}/>);
 
   expect(screen.getByRole(`heading`, {name: `${itemMock.name}`})).toBeInTheDocument();
   expect(screen.getByAltText(`${itemMock.name}`)).toBeInTheDocument();
@@ -19,7 +20,7 @@ it(`renders content`,()=>{
 })
 
 it(`handles store item hook`,()=>{
-  render(<Item item={itemMock} setItem={setMock}/>);
+  render(<Item item={itemMock} setItem={setMock} openPanel={panelMock}/>);
 
   fireEvent.click(screen.getByAltText(`${itemMock.name}`));
   expect(setMock).toBeCalled();

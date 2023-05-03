@@ -2,7 +2,6 @@ import React from 'react';
 import { render, cleanup,screen,  fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import ItemPanel from './itemPanel';
-import Store from './store';
 
 
 afterEach(cleanup);
@@ -12,7 +11,7 @@ const clickOutMock = jest.fn();
 
 it(`renders content`,()=>{
 
-  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock} />);
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock} />);
 
   expect(screen.getByAltText(`${itemMock.title}`)).toBeInTheDocument();
   expect(screen.getByAltText(`${itemMock.title}`)).toHaveAttribute(`src`,`${itemMock.pic}`);
@@ -22,7 +21,7 @@ it(`renders content`,()=>{
 });
 
 it(`clicks an add button and notifies added item`,()=>{
-  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock}/>);
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock}/>);
 
   fireEvent.click(screen.getByRole(`button`, {name: `Add`}));
 
@@ -32,7 +31,7 @@ it(`clicks an add button and notifies added item`,()=>{
 });
 
 it(`clicks X button to return to main`, ()=>{
-  render(<ItemPanel item={itemMock} setCart={setMock} show={true} onClickOutside={clickOutMock}/>);
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock}/>);
 
   fireEvent.click(screen.getByRole(`button`, {name: `X`}));
 
