@@ -1,11 +1,15 @@
-import ItemPanel from "./itemPanel";
 
-const Item = ({item,addCart})=>{
+const Item = ({item, setItem, openPanel})=>{
+
+  function handleSetItem(){
+    setItem(item);
+    openPanel();
+  }
 
   return(
     <div className='item' data-testid='item-test'>
       <h4>{item.name}</h4>
-      <ItemPanel item={item} addCart={addCart}/> 
+      <img src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
       <p>{item.description}</p>
       <p>{item.price}</p>
     </div>

@@ -1,32 +1,29 @@
-
-import React, {useState} from 'react';
-import Items from './components/itemsList.json' //pic,name,description,type,price
-import Item from './components/item';
+import React, { useState } from 'react';
 import uniqid from 'uniqid'
-import Cart from './components/cart';
+import Items from './itemsList.json' //pic,name,description,type,price
+import Item from './item';
+import ItemPanel from './itemPanel';
+import Cart from './cart';
 
 
 const Store = ()=> {
-  const items = Items;
-  const [isCartRendered, setIsCarRendered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState([]);
+  const [item,setItem] = useState(null);
 
-  function addItem (info){
-    setCart(...cart,info);
-  }
 
   return (
     <>
       <h1 data-testid='main-title'>VST shop</h1>
-      <div className='cart'>
-        <img alt='cart-icon' onClick={()=>{setIsCarRendered(!isCartRendered)}}></img>
-        <Cart setCart={setCart} cart={cart}  isRendered={isCartRendered}/>
+      <div data-testid='cart-display' className='cart'>
+        <Cart setCart={setCart} cart={cart}/>
       </div>
       <div data-testid='items-display' className='display'>
-        {items.map((item)=>
-          <Item key={uniqid()} item={item} addCart={()=>info => addItem(info)}/>
+        {Items.map((item)=>
+          <Item key={uniqid()} item={item} setItem={setItem}  openPanel={()=>{setIsModalOpen(true)}}/>
         )}
       </div>
+      <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </>
   );
 }

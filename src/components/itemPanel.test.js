@@ -1,29 +1,28 @@
+
 import React from 'react';
-import { render, cleanup,screen, fireEvent} from '@testing-library/react';
+import { render, cleanup,screen,  fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import ItemPanel from './itemPanel';
 
 
 afterEach(cleanup);
-const item = {pic: `a pic`, title:`a title`, description:`a description`}
+const itemMock = {pic: `a pic`, title:`a title`, description:`a description`}
 const setMock = jest.fn();
+const clickOutMock = jest.fn();
 
 it(`renders content`,()=>{
 
-  render(
-      <ItemPanel item={item} addCart={setMock}/>
-    );
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock} />);
 
-  const image = screen.getByAltText(`${item.title}`);
-  expect(image).toBeInTheDocument();
-  expect(image).toHaveAttribute(`src`,`${item.pic}`);
-  expect(screen.getByRole(`heading`,`${item.title}`)).toBeInTheDocument();
-  expect(screen.getByText(`${item.description}`)).toBeInTheDocument();
+  expect(screen.getByAltText(`${itemMock.title}`)).toBeInTheDocument();
+  expect(screen.getByAltText(`${itemMock.title}`)).toHaveAttribute(`src`,`${itemMock.pic}`);
+  expect(screen.getByRole(`heading`,`${itemMock.title}`)).toBeInTheDocument();
+  expect(screen.getByText(`${itemMock.description}`)).toBeInTheDocument();
   expect(screen.getByRole(`button`, {name: `Add`})).toBeInTheDocument();
 });
 
 it(`clicks an add button and notifies added item`,()=>{
-  render(<ItemPanel item={item} addCart={setMock}/>);
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock}/>);
 
   fireEvent.click(screen.getByRole(`button`, {name: `Add`}));
 
@@ -33,9 +32,11 @@ it(`clicks an add button and notifies added item`,()=>{
 });
 
 it(`clicks X button to return to main`, ()=>{
-  render(<ItemPanel item={item} addCart={setMock}/>);
-  
-  fireEvent.click(screen.getByRole(`button`, {name:`X`}))
-  expect(screen.queryByText(`X`)).not.toBeInTheDocument();
-  
+  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock}/>);
+
+  fireEvent.click(screen.getByRole(`button`, {name: `X`}));
+
+  expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
+  expect(screen.queryByRole(`button`, {name: `X`})).toBeNull();
 });
+

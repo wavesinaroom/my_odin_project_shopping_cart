@@ -1,0 +1,110 @@
+<<<<<<< HEAD
+  import {useState} from "react";
+
+  const ItemPanel = ({item, addCart}) => {
+
+    const [isAdded,setIsAdded] = useState(false);
+    const [close,setClose] = useState(false);
+
+    const eventHandler = ()=>{
+      addCart(item)
+      setIsAdded(true);
+||||||| 318ac63e
+  import {useState} from "react";
+  import { Link } from "react-router-dom";
+
+  const ItemPanel = ({info,setCart}) => {
+
+    const [isAdded,setIsAdded] = useState(false);
+
+    const add = ()=>{
+      setCart(cart => [...cart, info]);
+      setIsAdded(true);
+=======
+import {useEffect, useRef, useState} from "react";
+
+const ItemPanel = (props) => {
+
+  const [isAdded,setIsAdded] = useState(false);
+  const [close,setClose] = useState(false);
+  const {item, setCart, isModalOpen, setIsModalOpen} = props;
+  const ref = useRef();
+  useOnClickOutside(ref, ()=>setIsModalOpen(false));
+
+  function add(){
+    setCart(cart => [...cart,item]);
+    setIsAdded(true);
+  }
+
+  function useOnClickOutside(ref, handler){
+    useEffect(()=>{
+      const listener = (event)=>{
+        if(!ref.current || ref.current.contains(event.target))
+          return;
+        handler(event);
+      }
+      document.addEventListener(`mousedown`, listener);
+      document.addEventListener(`touchstart`, listener);
+
+      return()=>{
+        document.removeEventListener(`mousedown`, listener);
+        document.removeEventListener(`touchstart`, listener);
+      }
+    },[ref,handler]
+    );
+  }
+
+  if(close)
+    return null;
+  
+  return(
+    <>
+    {isModalOpen?
+    (<div ref={ref}>
+      <button onClick={()=>{setClose(true)}}>X</button>
+      <img src={item.pic} alt={item.title}></img>
+      <h1>{item.title}</h1>
+      <p>{item.description}</p>
+      {isAdded ? <p>Item added to cart</p>:null}
+      {isAdded ? null:<button onClick={()=>{add();}}>Add</button>}
+    </div>):(null)
+>>>>>>> ea4ca75a693b1d3b4b9d2f8ab08ae084623573b4
+    }
+<<<<<<< HEAD
+
+    if(close)
+      return null;
+
+    return(
+      <>
+        <button onClick={()=>{setClose(true)}}>X</button>
+        <img src={item.pic} alt={item.title}></img>
+        <h1>{item.title}</h1>
+        <p>{item.description}</p>
+        {isAdded ? <p>Item added to cart</p>:null}
+        {isAdded ? null:<button onClick={()=>{eventHandler()}}>Add</button>}
+      </>
+    )
+  };
+||||||| 318ac63e
+    return(
+      <>
+        <Link to='/' ><button>X</button></Link>
+        <img src={info.pic} alt={info.title}></img>
+        <h1>{info.title}</h1>
+        <p>{info.description}</p>
+        {isAdded ? <p>Item added to cart</p>:null}
+        {isAdded ? null:<button onClick={()=>{add()}}>Add</button>}
+      </>
+    )
+  };
+=======
+  </>
+  )};
+>>>>>>> ea4ca75a693b1d3b4b9d2f8ab08ae084623573b4
+
+export default ItemPanel;
+
+
+
+

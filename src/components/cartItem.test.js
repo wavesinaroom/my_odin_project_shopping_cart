@@ -20,7 +20,7 @@ it(`renders contents`, ()=>{
   expect(screen.getByText(item.name)).toBeInTheDocument();
 });
 
-it(`calls remove funcion when - buton is clicked`,async()=>{
+it(`calls remove function when - button is clicked`,async()=>{
   render(
     <CartItem item={item} setCart={setMock(item)}/>
   );  
