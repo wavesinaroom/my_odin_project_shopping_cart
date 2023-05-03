@@ -10,7 +10,7 @@ const ItemPanel = (props) => {
   useOnClickOutside(ref, ()=>setIsModalOpen(false));
 
   function add(){
-    setCart(cart => [...cart,item]);
+    setCart(cart=>[...cart,item]);
     setIsAdded(true);
   }
 

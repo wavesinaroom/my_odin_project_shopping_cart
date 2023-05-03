@@ -50,3 +50,26 @@ it(`toggles item panel on/off`,async ()=>{
   });
 });
 
+
+it(`adds an item`,async ()=>{
+  render(<Store/>);
+
+  userEvent.click(screen.getByAltText(`Reaper`));
+
+  await waitFor(()=>{
+    expect(screen.getByRole(`button`,{name:`Add`})).toBeInTheDocument();
+  });
+
+  userEvent.click(screen.getByRole(`button`, {name:`Add`}));
+  userEvent.click(screen.getByAltText(`Reaper`));
+
+  await waitFor(()=>{
+    expect(screen.queryByRole(`button`, {name:`Add`})).not.toBeInTheDocument();
+  });
+
+    userEvent.click(screen.getByAltText(`cart-icon`))
+  await waitFor(()=>{
+    expect(screen.getByTestId(`Reaper`)).toBeInTheDocument();
+  });
+
+});
