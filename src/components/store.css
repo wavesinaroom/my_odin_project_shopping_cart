@@ -1,14 +1,3 @@
-body{
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../img/store-background.jpg');
-  background-color: white;
-  background-repeat:no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-}
-
 .header-banner{
   display: flex;
   flex-direction: row ;
@@ -19,7 +8,11 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;  
-  grid-template-columns: repeat(4, 20vw);
-  grid-template-rows:  repeat(3, 20vh);
-  padding: 7vh 15vw;
+  grid-template-columns: repeat(4, 17vw);
+  grid-template-rows:  repeat(3, 25vh);
+  max-width: 70vw;
+  max-height: 70vh;
+  position: relative;
+  top: 10vh;
+  left: 10vw
 }
