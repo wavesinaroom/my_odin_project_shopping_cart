@@ -38,8 +38,14 @@ const Cart = ({setCart, cart})=>{
     );
   }
 
-  if(back)
-    return null;
+  if(back){
+    return(
+      <>
+        <img alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
+      </>
+    ) 
+
+  }
 
   if(isNotified){
     return(
