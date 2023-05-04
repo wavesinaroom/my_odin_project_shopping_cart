@@ -10,8 +10,7 @@ const Item = ({item, setItem, openPanel})=>{
     <div  className='item' data-testid='item-test'>
       <h4>{item.name}</h4>
       <img src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
-      <p>{item.description}</p>
-      <p>{item.price}</p>
+      <p>$ {item.price}</p>
     </div>
   );
 
