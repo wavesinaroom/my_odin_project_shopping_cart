@@ -1,6 +1,4 @@
-const style = {
-  color: 'blue'
-}
+import './item.css'
 const Item = ({item, setItem, openPanel})=>{
 
   function handleSetItem(){
@@ -9,7 +7,7 @@ const Item = ({item, setItem, openPanel})=>{
   }
 
   return(
-    <div style={style} className='item' data-testid='item-test'>
+    <div  className='item' data-testid='item-test'>
       <h4>{item.name}</h4>
       <img src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
       <p>{item.description}</p>
