@@ -1,3 +1,4 @@
+import './store.css'
 import React, { useState } from 'react';
 import uniqid from 'uniqid'
 import Items from './itemsList.json' //pic,name,description,type,price
@@ -16,10 +17,12 @@ const Store = ()=> {
   }
 
   return (
-    <>
-      <h1 data-testid='main-title'>VST shop</h1>
-      <div data-testid='cart-display' className='cart'>
-        <Cart setCart={target=>(remove(target))} cart={cart}/>
+    <div className='store'>
+      <div className='header-banner'> 
+        <h1 data-testid='main-title'>VST shop</h1>
+        <div data-testid='cart-display' className='cart'>
+          <Cart data-testid='cart-display' setCart={target=>(remove(target))} cart={cart}/>
+        </div>
       </div>
       <div data-testid='items-display' className='display'>
         {Items.map((item)=>
@@ -27,7 +30,7 @@ const Store = ()=> {
         )}
       </div>
       <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-    </>
+    </div>
   );
 }
 
