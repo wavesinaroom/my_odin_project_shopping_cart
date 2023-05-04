@@ -13,6 +13,12 @@
   font-size: 5vh; 
 }
 
+.header-banner img{
+  content: url('https://img.icons8.com/?size=512&id=QVQY51sDgy1I&format=png');
+  width: 32px;
+  height: 32px;
+}
+
 .display{
   background-repeat: no-repeat;
   background-size: cover;
