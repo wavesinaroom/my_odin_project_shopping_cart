@@ -1,4 +1,6 @@
-
+const style = {
+  color: 'blue'
+}
 const Item = ({item, setItem, openPanel})=>{
 
   function handleSetItem(){
@@ -7,7 +9,7 @@ const Item = ({item, setItem, openPanel})=>{
   }
 
   return(
-    <div className='item' data-testid='item-test'>
+    <div style={style} className='item' data-testid='item-test'>
       <h4>{item.name}</h4>
       <img src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
       <p>{item.description}</p>
