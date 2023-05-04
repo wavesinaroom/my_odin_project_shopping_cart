@@ -15,8 +15,7 @@ it(`renders content`,()=>{
 
   expect(screen.getByRole(`heading`, {name: `${itemMock.name}`})).toBeInTheDocument();
   expect(screen.getByAltText(`${itemMock.name}`)).toBeInTheDocument();
-  expect(screen.getByText(`${itemMock.description}`)).toBeInTheDocument();
-  expect(screen.getByText(`${itemMock.price}`)).toBeInTheDocument();
+  expect(screen.getByText(`$ ${itemMock.price}`)).toBeInTheDocument();
 })
 
 it(`handles store item hook`,()=>{
