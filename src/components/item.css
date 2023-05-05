@@ -6,16 +6,16 @@
   align-items: center;
 }
 
-.item img{
+img{
   max-width: 280px;
   max-height: 560px;
 }
 
-.item h4{
+ h4{
   margin-bottom: 2em;
 }
 
-.item p{
+ p{
   margin-top: 2em;
   font-weight: bolder;
 }

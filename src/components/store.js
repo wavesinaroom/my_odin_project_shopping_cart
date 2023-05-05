@@ -24,13 +24,11 @@ const Store = ()=> {
           <Cart data-testid='cart-display' setCart={target=>(remove(target))} cart={cart}/>
         </div>
       </div>
-        <div className='shop'>
-          <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
           <div data-testid='items-display' className='display'>
+          <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
             {Items.map((item)=>
               <Item key={uniqid()} item={item} setItem={setItem}  openPanel={()=>{setIsModalOpen(true)}}/>
             )}
-          </div>
         </div>
     </div>
   );

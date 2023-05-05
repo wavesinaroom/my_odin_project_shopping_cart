@@ -15,24 +15,15 @@
 
 .header-banner img{
   content: url('https://img.icons8.com/?size=512&id=QVQY51sDgy1I&format=png');
-  width: 32px;
-  height: 32px;
+  width: 64px;
+  height: 64px;
 }
 
 .display{
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;  
-  grid-template-columns: repeat(4, 17vw);
+  grid-template-columns: repeat(5, 17vw);
   grid-template-rows:  repeat(3, 25vh);
-  max-width: 70vw;
-  max-height: 70vh;
-  position: relative;
-  top: 1vh;
-  left: 17vw
-}
-
-.shop{
-  display: flex;
-  flex-direction: row;
+  border-bottom: dashed 2px;
 }
