@@ -44,8 +44,8 @@ const ItemPanel = (props) => {
     <>
     {isModalOpen?
     (<div style={divOn} ref={ref}>
+      <h4 style = {h4}>{item.name}</h4>
       <img style={img} src={item.pic} alt={item.title}></img>
-      <h1>{item.title}</h1>
       <p>{item.description}</p>
       {isAdded ? <p>Item added to cart</p>:null}
       {isAdded ? null:<button onClick={()=>{add();}}>Add</button>}
@@ -73,9 +73,12 @@ const divOff = {
 }
 
 const img = {
-  marginTop: '2vh'
+  marginBottom: '2vh',
+  maxWidth: '210px',
+  maxHeight: '420px'
 }
 
-const x = {
-  marginRight: '13vw'
+const h4 = {
+  marginBottom: '2em'
 }
+
