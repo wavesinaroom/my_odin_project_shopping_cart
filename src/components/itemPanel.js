@@ -45,8 +45,8 @@ const ItemPanel = (props) => {
     <>
     {isModalOpen?
     (<div style={divOn} ref={ref}>
-      <button onClick={()=>{setClose(true)}}>X</button>
-      <img src={item.pic} alt={item.title}></img>
+      <button style={x} onClick={()=>{setClose(true)}}>X</button>
+      <img style={img} src={item.pic} alt={item.title}></img>
       <h1>{item.title}</h1>
       <p>{item.description}</p>
       {isAdded ? <p>Item added to cart</p>:null}
@@ -63,15 +63,21 @@ export default ItemPanel;
 const divOn = {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   justifyContent: 'center',
   gridRow: '1/4',
   borderRight: 'dashed 2px',
+  padding:'2em',
 }
 
 const divOff = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
   gridRow: '1/4'
+}
+
+const img = {
+  marginTop: '2vh'
+}
+
+const x = {
+  marginRight: '13vw'
 }

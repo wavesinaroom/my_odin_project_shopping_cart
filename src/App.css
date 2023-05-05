@@ -3,3 +3,16 @@
   color: black;
 }
 
+
+button{
+  background-color: #ffffff;
+  border:thin 2px;
+  border-color: black;
+  padding: 0.5em;
+  margin: 0.5em;
+  font-size: 18px;
+}
+
+button:hover{
+border-width:  3px;
+}
