@@ -1,5 +1,22 @@
-import './item.css'
+import {useState} from "react";
+
 const Item = ({item, setItem, openPanel})=>{
+
+  const[isHover, setIsHover] = useState(false);
+  const img = {
+    maxWidth: '280px',
+    maxHeight: '560px',
+    opacity: isHover? '1':'0.7',
+    cursor: isHover? 'pointer':'default'
+  }
+
+  function handleMouseEnter () {
+    setIsHover(true);
+  }
+
+  function handleMouseLeave (){
+    setIsHover(false);
+  }
 
   function handleSetItem(){
     setItem(item);
@@ -9,7 +26,7 @@ const Item = ({item, setItem, openPanel})=>{
   return(
     <div  style={div} className='item' data-testid='item-test'>
       <h4>{item.name}</h4>
-      <img style={img} src={item.pic} alt={item.name} onClick={()=>{handleSetItem();}}></img> 
+      <img style={img} src={item.pic} alt={item.name} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>{handleSetItem();}}></img> 
       <p style={p}>$ {item.price}</p>
     </div>
   );
@@ -32,7 +49,4 @@ const p = {
   fontWeight: 'bolder'
 }
 
-const img = {
-  maxWidth: '280px',
-  maxHeight: '560px'
-}
+
