@@ -1,4 +1,3 @@
-import './itemPanel.css'
 import {useEffect, useRef, useState} from "react";
 
 
