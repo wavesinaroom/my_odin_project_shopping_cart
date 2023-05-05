@@ -45,7 +45,6 @@ const ItemPanel = (props) => {
     <>
     {isModalOpen?
     (<div style={divOn} ref={ref}>
-      <button style={x} onClick={()=>{setClose(true)}}>X</button>
       <img style={img} src={item.pic} alt={item.title}></img>
       <h1>{item.title}</h1>
       <p>{item.description}</p>

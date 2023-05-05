@@ -31,12 +31,4 @@ it(`clicks an add button and notifies added item`,()=>{
   expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
 });
 
-it(`clicks X button to return to main`, ()=>{
-  render(<ItemPanel item={itemMock} setCart={setMock} isModalOpen={true} setIsModalOpen={clickOutMock}/>);
-
-  fireEvent.click(screen.getByRole(`button`, {name: `X`}));
-
-  expect(screen.queryByRole(`button`, {name: `Add`})).toBeNull();
-  expect(screen.queryByRole(`button`, {name: `X`})).toBeNull();
-});
 
