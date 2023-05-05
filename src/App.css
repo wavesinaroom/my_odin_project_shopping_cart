@@ -14,5 +14,7 @@ button{
 }
 
 button:hover{
-border-width:  3px;
+  border-right-width:  3px;
+  border-bottom-width: 3px;
+  font-size: 19px;
 }
