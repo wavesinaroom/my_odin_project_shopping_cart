@@ -31,3 +31,8 @@
   top: 1vh;
   left: 17vw
 }
+
+.shop{
+  display: flex;
+  flex-direction: row;
+}
