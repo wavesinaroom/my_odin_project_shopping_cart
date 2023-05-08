@@ -17,7 +17,7 @@ const Cart = ({setCart, cart})=>{
   }
 
   function backToMain(){
-    setBack(true);
+    setIsRendered(false);
   }
 
   function useOnClickOutside(ref, handler){
@@ -39,20 +39,12 @@ const Cart = ({setCart, cart})=>{
   }
 
 
-  if(back){
-    return(
-      <>
-        <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
-      </>
-    ) 
-
-  }
 
   if(isNotified){
     return(
     <div>
+      <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
       <p>Thanks for shopping at VST store</p>
-      <button onClick={()=>{backToMain();}}>Back</button>
     </div>
     );
   }
