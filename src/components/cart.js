@@ -3,17 +3,17 @@ import CartItem from './cartItem'
 import uniqid from 'uniqid'
 import {useEffect, useRef, useState} from 'react';
 
-const Cart = ({setCart, cart})=>{
+const Cart = ({setCart, cart, cleanCart})=>{
   const ref = useRef();
   const renderedCart = cart;
   const total = cart.reduce((sum, item)=> sum+= item.price,0);
   const [isRendered, setIsRendered] = useState(false);
   const [isNotified, setIsNotified] = useState(false);
-  const [back, setBack] = useState(false)
   useOnClickOutside(ref, ()=> setIsRendered(false));
 
   function checkOut (){
     setIsNotified(true);
+    cleanCart();
   }
 
   function backToMain(){
@@ -44,7 +44,6 @@ const Cart = ({setCart, cart})=>{
     return(
     <div>
       <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
-      <p>Thanks for shopping at VST store</p>
     </div>
     );
   }

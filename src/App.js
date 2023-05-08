@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 const App = ()=> {
     
+  document.title = 'VST store';
   return (
     <div style={div}>
       <h1 style={header}>Welcome to the VST store</h1>

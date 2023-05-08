@@ -15,7 +15,10 @@ const Store = ()=> {
   function remove(target){
     setCart(cart.filter(item=> item.name !== target.item.name))
   }
-  
+
+  function clean(){
+    setCart([]);
+  } 
   const headerDiv = {
     display: 'flex',
     flexDirection: 'row ',
@@ -43,7 +46,7 @@ const Store = ()=> {
     <div className='store'>
       <div style={headerDiv}> 
         <h1 style={headerTitle} data-testid='main-title'>VST shop</h1>
-        <Cart setCart={target=>(remove(target))} cart={cart}/>
+        <Cart setCart={target=>(remove(target))} cart={cart} cleanCart={()=>{clean()}}/>
       </div>
           <div style={display} data-testid='items-display'>
           <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
