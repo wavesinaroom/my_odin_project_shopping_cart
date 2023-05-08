@@ -10,8 +10,7 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route exact path="/" component={<App/>}/>
-        <Route exact path="/store" component={<Store/>}/>
+        <App/>
       </Routes>
     </HashRouter>
   </React.StrictMode>
