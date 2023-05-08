@@ -9,8 +9,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <Route path="/" element={<App/>}/>
-      <Route path="/store" element={<Store/>}/>
+      <Route exact path="/" component={<App/>}/>
+      <Route exact path="/store" component={<Store/>}/>
     </HashRouter>
   </React.StrictMode>
 );
