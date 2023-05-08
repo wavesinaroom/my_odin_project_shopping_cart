@@ -47,9 +47,3 @@ const Item = ({item, setItem, openPanel})=>{
 
 }
 export default Item;
-
-/*Styles*/
-
-
-
-

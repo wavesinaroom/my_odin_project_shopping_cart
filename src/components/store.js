@@ -15,16 +15,39 @@ const Store = ()=> {
   function remove(target){
     setCart(cart.filter(item=> item.name !== target.item.name))
   }
+  
+  const headerDiv = {
+    display: 'flex',
+    flexDirection: 'row ',
+    justifyContent: 'space-around',
+    alignItems: 'baseline',
+    marginTop: '3em',
+    borderStyle: 'dashed',
+    borderLeft: 'none',
+    borderRight: 'none'
+  }
+
+  const headerTitle = {
+    fontSize: '5vh'
+  }
+  
+
+  const display = {
+    display: 'grid',  
+    gridTemplateColumns: 'repeat(5, 17vw)',
+    gridTemplateRows:  'repeat(3, 25vh)',
+    borderBottom: 'dashed 2px',
+  }
 
   return (
     <div className='store'>
-      <div className='header-banner'> 
-        <h1 data-testid='main-title'>VST shop</h1>
+      <div style={headerDiv}> 
+        <h1 style={headerTitle} data-testid='main-title'>VST shop</h1>
         <div data-testid='cart-display' className='cart'>
           <Cart data-testid='cart-display' setCart={target=>(remove(target))} cart={cart}/>
         </div>
       </div>
-          <div data-testid='items-display' className='display'>
+          <div style={display} data-testid='items-display'>
           <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
             {Items.map((item)=>
               <Item key={uniqid()} item={item} setItem={setItem}  openPanel={()=>{setIsModalOpen(true)}}/>

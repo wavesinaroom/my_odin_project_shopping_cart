@@ -38,10 +38,11 @@ const Cart = ({setCart, cart})=>{
     );
   }
 
+
   if(back){
     return(
       <>
-        <img alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
+        <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
       </>
     ) 
 
@@ -57,21 +58,57 @@ const Cart = ({setCart, cart})=>{
   }
   
   return(
-    <>
-      <img alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
+    <div style={div}>
+      <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
       {isRendered?
-      (<div ref={ref} className="cart-items">
+      (<div ref={ref} style={cartItems}>
         {renderedCart.map((purchase)=>
           <CartItem key={uniqid()} item={purchase} setCart={setCart}/>
         )}
-        <button onClick={()=>{checkOut();}}>Checkout</button>
-        <button onClick={()=>{backToMain();}}>Back</button>
-        <div className='cart-total'>
-          <p>Total</p>
-          <p data-testid='total-price'>{total}</p>
+        <div style={result}>
+          <p style={{fontWeight:'bolder'}}>Total</p>
+          <p style={{fontWeight:'bolder'}} data-testid='total-price'>{total}</p>
+        </div>
+        <div style={bottom}>
+          <button style={button} onClick={()=>{checkOut();}}>Checkout</button>
+          <button style={button} onClick={()=>{backToMain();}}>Back</button>
         </div>
       </div>):(null)}
-    </>
+    </div>
   );
 }
 export default Cart;
+
+const img = {
+  content: `url('https://img.icons8.com/?size=512&id=QVQY51sDgy1I&format=png')`,
+  width: '64px',
+  height:'64px' 
+}
+
+const div = {
+  position: 'relative',
+  left: '7vw',
+
+}
+
+const cartItems = {
+  position:'absolute',
+  backgroundColor: 'white',
+  paddingRight: '2vw'
+}
+
+const result = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  marginRight: '0.5vw'
+}
+
+const bottom = {
+  display:'flex'
+}
+
+const button = {
+  fontSize: '16px'
+}
+
