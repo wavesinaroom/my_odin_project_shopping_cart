@@ -48,7 +48,7 @@ const ItemPanel = (props) => {
       <img style={img} src={item.pic} alt={item.title}></img>
       <p>{item.description}</p>
       {isAdded ? <p>Item added to cart</p>:null}
-      {isAdded ? null:<button onClick={()=>{add();}}>Add</button>}
+      {isAdded ? null:<button style={button} onClick={()=>{add();}}>Add</button>}
     </div>):(<div style={divOff}></div>)
     }
   </>
@@ -80,5 +80,10 @@ const img = {
 
 const h4 = {
   marginBottom: '2em'
+}
+
+const button = {
+  position:'fixed',
+  bottom: '28vh'
 }
 

@@ -50,7 +50,7 @@ const Cart = ({setCart, cart})=>{
 
   if(isNotified){
     return(
-    <div className="cart-items">
+    <div>
       <p>Thanks for shopping at VST store</p>
       <button onClick={()=>{backToMain();}}>Back</button>
     </div>
@@ -58,7 +58,7 @@ const Cart = ({setCart, cart})=>{
   }
   
   return(
-    <div style={div}>
+    <div data-testid='cart-display' style={div}>
       <img style={img} alt='cart-icon' onClick={()=>{setIsRendered(true)}}></img>
       {isRendered?
       (<div ref={ref} style={cartItems}>
@@ -88,7 +88,6 @@ const img = {
 const div = {
   position: 'relative',
   left: '7vw',
-
 }
 
 const cartItems = {
@@ -101,14 +100,14 @@ const result = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
-  marginRight: '0.5vw'
+  marginRight: '0.5vw',
 }
 
 const bottom = {
-  display:'flex'
+  display:'flex',
 }
 
 const button = {
-  fontSize: '16px'
+  fontSize: '16px',
 }
 

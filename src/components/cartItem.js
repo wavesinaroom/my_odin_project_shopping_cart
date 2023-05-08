@@ -41,5 +41,5 @@ const remove = {
   paddingRight: '0.7em',
   paddingLeft: '0.5em',
   paddingBottom: '0.2em',
-  paddingTop: '0.2em'
+  paddingTop: '0.2em',
 }

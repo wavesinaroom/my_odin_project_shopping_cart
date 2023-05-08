@@ -43,9 +43,7 @@ const Store = ()=> {
     <div className='store'>
       <div style={headerDiv}> 
         <h1 style={headerTitle} data-testid='main-title'>VST shop</h1>
-        <div data-testid='cart-display' className='cart'>
-          <Cart data-testid='cart-display' setCart={target=>(remove(target))} cart={cart}/>
-        </div>
+        <Cart setCart={target=>(remove(target))} cart={cart}/>
       </div>
           <div style={display} data-testid='items-display'>
           <ItemPanel item={item} setCart={setCart} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
