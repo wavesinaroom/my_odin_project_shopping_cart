@@ -4,10 +4,13 @@ import {useEffect, useRef, useState} from "react";
 const ItemPanel = (props) => {
 
   const [isAdded,setIsAdded] = useState(false);
-  const [close,setClose] = useState(false);
   const {item, setCart, isModalOpen, setIsModalOpen} = props;
   const ref = useRef();
-  useOnClickOutside(ref, ()=>setIsModalOpen(false));
+  useOnClickOutside(ref, ()=>{
+    setIsModalOpen(false); 
+    setIsAdded(false);
+  }
+   );
 
   function add(){
     setCart(cart=>[...cart,item]);
@@ -32,13 +35,6 @@ const ItemPanel = (props) => {
     );
   }
 
-  if(close){
-    return(
-      <>
-        <div style={divOff}></div>
-      </>
-    );
-  }
   
   return(
     <>
