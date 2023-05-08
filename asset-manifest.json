@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/my-odin-project-shopping-cart/static/css/main.1650e36b.css",
-    "main.js": "/my-odin-project-shopping-cart/static/js/main.e828c278.js",
+    "main.js": "/my-odin-project-shopping-cart/static/js/main.086bc8b9.js",
     "index.html": "/my-odin-project-shopping-cart/index.html",
     "main.1650e36b.css.map": "/my-odin-project-shopping-cart/static/css/main.1650e36b.css.map",
-    "main.e828c278.js.map": "/my-odin-project-shopping-cart/static/js/main.e828c278.js.map"
+    "main.086bc8b9.js.map": "/my-odin-project-shopping-cart/static/js/main.086bc8b9.js.map"
   },
   "entrypoints": [
     "static/css/main.1650e36b.css",
-    "static/js/main.e828c278.js"
+    "static/js/main.086bc8b9.js"
   ]
 }
