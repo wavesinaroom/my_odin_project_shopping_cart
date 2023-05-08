@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RouteSwitch from "./routeswitch"
+import { HashRouter, Route } from 'react-router-dom';
 import './index.css';
+import App from './App'
+import Store from './components/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouteSwitch/>
+    <HashRouter>
+      <Route path="/" element={<App/>}/>
+      <Route path="/store" element={<Store/>}/>
+    </HashRouter>
   </React.StrictMode>
 );
